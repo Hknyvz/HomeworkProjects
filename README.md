@@ -1,2 +1,2 @@
 # HomeworkProjects
-That is a homework of senior developer development camp 
+That is a repository of homeworks of senior developer development camp 
