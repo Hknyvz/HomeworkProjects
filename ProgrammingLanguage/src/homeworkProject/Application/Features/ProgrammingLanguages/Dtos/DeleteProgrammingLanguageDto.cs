@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Core.Persistance.Repositories
+namespace Application.Features.ProgrammingLanguages.Dtos
 {
-    public class Entity
+    public class DeleteProgrammingLanguageDto
     {
         public int Id { get; set; }
     }
