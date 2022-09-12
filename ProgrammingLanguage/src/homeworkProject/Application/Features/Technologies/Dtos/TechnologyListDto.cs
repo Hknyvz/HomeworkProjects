@@ -1,6 +1,4 @@
-﻿using Core.Persistence.Paging;
-
-namespace Application.Features.Technologies.Dtos;
+﻿namespace Application.Features.Technologies.Dtos;
 
 public class TechnologyListDto
 {

@@ -7,15 +7,10 @@ using Core.Persistence.Paging;
 using Domain.Entities;
 using MediatR;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.Technologies.Queries.GetListTechnologyByDynamic
 {
-    public class GetListTechnologyByDynamicQuery:IRequest<TechnologyListModel>
+    public class GetListTechnologyByDynamicQuery : IRequest<TechnologyListModel>
     {
         public Dynamic Dynamic { get; set; }
         public PageRequest PageRequest { get; set; }

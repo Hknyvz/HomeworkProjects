@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.1" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Abstractions" Version="6.0.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.Binder" Version="6.0.0" />
     <PackageReference Include="Microsoft.IdentityModel.Tokens" Version="6.15.1" />
@@ -17,6 +18,29 @@
   <ItemGroup>
     <Folder Include="Enums\" />
     <Folder Include="EmailAuthenticator\" />
+    <Folder Include="Features\OperationClaims\Dtos\" />
+    <Folder Include="Features\OperationClaims\Models\" />
+    <Folder Include="Features\OperationClaims\Profiles\" />
+    <Folder Include="Features\OperationClaims\Queries\" />
+    <Folder Include="Features\OperationClaims\Rules\" />
+    <Folder Include="Features\RefreshTokens\Commands\" />
+    <Folder Include="Features\RefreshTokens\Dtos\" />
+    <Folder Include="Features\RefreshTokens\Models\" />
+    <Folder Include="Features\RefreshTokens\Profiles\" />
+    <Folder Include="Features\RefreshTokens\Queries\" />
+    <Folder Include="Features\RefreshTokens\Rules\" />
+    <Folder Include="Features\UserOperationClaims\Commands\" />
+    <Folder Include="Features\UserOperationClaims\Dtos\" />
+    <Folder Include="Features\UserOperationClaims\Models\" />
+    <Folder Include="Features\UserOperationClaims\Profiles\" />
+    <Folder Include="Features\UserOperationClaims\Queries\" />
+    <Folder Include="Features\UserOperationClaims\Rules\" />
+    <Folder Include="Features\Users\Commands\" />
+    <Folder Include="Features\Users\Dtos\" />
+    <Folder Include="Features\Users\Models\" />
+    <Folder Include="Features\Users\Profiles\" />
+    <Folder Include="Features\Users\Queries\" />
+    <Folder Include="Features\Users\Rules\" />
   </ItemGroup>
 
   <ItemGroup>

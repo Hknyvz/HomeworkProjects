@@ -1,13 +1,8 @@
 ﻿using Core.Security.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Persistence.EntityDbMapping
+namespace Core.Security.EntityDbMappings
 {
     public class UserMapping : IEntityTypeConfiguration<User>
     {
@@ -19,11 +14,11 @@ namespace Persistence.EntityDbMapping
             builder.Property(p => p.LastName).HasColumnName(nameof(User.LastName)).IsRequired().HasMaxLength(50);
             builder.Property(p => p.Email).HasColumnName(nameof(User.Email)).IsRequired().HasMaxLength(50);
             builder.Property(p => p.Status).HasColumnName(nameof(User.Status));
-            builder.Property(p => p.RefreshTokens).HasColumnName(nameof(User.RefreshTokens));
             builder.Property(p => p.AuthenticatorType).HasColumnName(nameof(User.AuthenticatorType));
             builder.Property(p => p.PasswordHash).HasColumnName(nameof(User.PasswordHash));
             builder.Property(p => p.PasswordSalt).HasColumnName(nameof(User.PasswordSalt));
             builder.HasMany(p => p.UserOperationClaims);
+            builder.HasMany(p => p.RefreshTokens);
         }
     }
 }
