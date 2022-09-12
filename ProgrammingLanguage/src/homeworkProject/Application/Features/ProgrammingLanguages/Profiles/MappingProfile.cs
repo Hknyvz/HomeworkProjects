@@ -17,7 +17,7 @@ public class MappingProfile : Profile
         CreateMap<ProgrammingLanguage, CreateProgrammingLanguageCommand>().ReverseMap();
         CreateMap<IPaginate<ProgrammingLanguage>, ProgrammingLanguageListModel>().ReverseMap();
         CreateMap<ProgrammingLanguage, ProgrammingLanguageListDto>().ReverseMap();
-        CreateMap<ProgrammingLanguage, ProgrammingLanguageGetByIdDto>().ReverseMap();
+        CreateMap<ProgrammingLanguage, GetProgrammingLanguageByIdDto>().ReverseMap();
         CreateMap<ProgrammingLanguage, DeleteProgrammingLanguageCommand>().ReverseMap();
         CreateMap<ProgrammingLanguage, DeleteProgrammingLanguageDto>().ReverseMap();
         CreateMap<ProgrammingLanguage, UpdateProgrammingLanguageCommand>().ReverseMap();

@@ -1,15 +1,10 @@
 ﻿using FluentValidation;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Application.Features.ProgrammingLanguages.Commands.UpdateProgrammingLanguage
 {
-    public class UpdateProgrammingLanguageCommandValidator: AbstractValidator<UpdateProgrammingLanguageCommand>
+    public class UpdateProgrammingLanguageValidator : AbstractValidator<UpdateProgrammingLanguageCommand>
     {
-        public UpdateProgrammingLanguageCommandValidator()
+        public UpdateProgrammingLanguageValidator()
         {
             RuleFor(p => p.Name).NotEmpty();
         }
