@@ -2,9 +2,9 @@
 
 namespace Application.Features.ProgrammingLanguages.Commands.CreateProgrammingLanguage;
 
-public class CreateProgrammingLanguageCommandValidator : AbstractValidator<CreateProgrammingLanguageCommand>
+public class CreateTechnologyCommandValidator : AbstractValidator<CreateProgrammingLanguageCommand>
 {
-    public CreateProgrammingLanguageCommandValidator()
+    public CreateTechnologyCommandValidator()
     {
         RuleFor(p => p.Name).NotEmpty();
     }
