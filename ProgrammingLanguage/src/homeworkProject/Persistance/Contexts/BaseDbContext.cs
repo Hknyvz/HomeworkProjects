@@ -1,8 +1,9 @@
 ﻿using Core.Security.Entities;
+using Core.Security.EntityDbMappings;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
-using Persistence.EntityDbMapping;
+using Persistence.EntityDbMappings;
 
 namespace Persistence.Contexts
 {
@@ -14,6 +15,7 @@ namespace Persistence.Contexts
         public DbSet<User> User { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaim { get; set; }
         public DbSet<OperationClaim> OperationClaim { get; set; }
+        public DbSet<RefreshToken> RefreshToken { get; set; }
 
         public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {
@@ -27,6 +29,7 @@ namespace Persistence.Contexts
             modelBuilder.ApplyConfiguration(new UserMapping());
             modelBuilder.ApplyConfiguration(new UserOperationClaimMapping());
             modelBuilder.ApplyConfiguration(new OperationClaimMapping());
+            modelBuilder.ApplyConfiguration(new RefreshTokenMapping());
 
             ProgrammingLanguage[] programmingLanguageEntitySeeds = { new(1, "C#"), new(2, "C++") };
             modelBuilder.Entity<ProgrammingLanguage>().HasData(programmingLanguageEntitySeeds);

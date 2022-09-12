@@ -8,7 +8,7 @@ public class ProgrammingLanguage : Entity
     {
         Technologies = new HashSet<Technology>();
     }
-    
+
     public ProgrammingLanguage(int id, string name) : this()
     {
         Id = id;

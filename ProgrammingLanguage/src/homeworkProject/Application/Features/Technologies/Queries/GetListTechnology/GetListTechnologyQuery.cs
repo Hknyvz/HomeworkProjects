@@ -25,7 +25,7 @@ public class GetListTechnologyQuery : IRequest<TechnologyListModel>
 
         public async Task<TechnologyListModel> Handle(GetListTechnologyQuery request, CancellationToken cancellationToken)
         {
-            IPaginate<Technology> technology = await technologyRepository.GetListAsync(size: request.PageRequest.PageSize, index: request.PageRequest.Page, include:p=>p.Include(p=>p.ProgrammingLanguage));
+            IPaginate<Technology> technology = await technologyRepository.GetListAsync(size: request.PageRequest.PageSize, index: request.PageRequest.Page, include: p => p.Include(p => p.ProgrammingLanguage));
             return mapper.Map<TechnologyListModel>(technology);
         }
     }

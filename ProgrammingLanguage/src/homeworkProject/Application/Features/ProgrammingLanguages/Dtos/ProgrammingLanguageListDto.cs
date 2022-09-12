@@ -1,6 +1,4 @@
-﻿using Core.Persistence.Paging;
-
-namespace Application.Features.ProgrammingLanguages.Dtos;
+﻿namespace Application.Features.ProgrammingLanguages.Dtos;
 
 public class ProgrammingLanguageListDto
 {

@@ -1,13 +1,8 @@
 ﻿using Core.Security.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace Persistence.EntityDbMapping
+namespace Core.Security.EntityDbMappings
 {
     public class UserOperationClaimMapping : IEntityTypeConfiguration<UserOperationClaim>
     {
