@@ -12,8 +12,8 @@ using Persistence.Contexts;
 namespace Persistence.Migrations
 {
     [DbContext(typeof(ProgrammingLanguageDbContext))]
-    [Migration("20220912194625_AddJWT")]
-    partial class AddJWT
+    [Migration("20220925074040_test1")]
+    partial class test1
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -23,6 +23,79 @@ namespace Persistence.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
+
+            modelBuilder.Entity("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.Table", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("TableName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Table");
+                });
+
+            modelBuilder.Entity("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.TableColumn", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("ColumnName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("EntityId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("TableId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableId");
+
+                    b.ToTable("TableColumn");
+                });
+
+            modelBuilder.Entity("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.TableColumnChangeDetail", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("ChangeDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("EntityState")
+                        .HasColumnType("int");
+
+                    b.Property<string>("NewValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("OldValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TableColumnId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("TableColumnId");
+
+                    b.ToTable("TableColumnChangeDetails");
+                });
 
             modelBuilder.Entity("Core.Security.Entities.OperationClaim", b =>
                 {
@@ -235,6 +308,28 @@ namespace Persistence.Migrations
                     b.ToTable("Technology", (string)null);
                 });
 
+            modelBuilder.Entity("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.TableColumn", b =>
+                {
+                    b.HasOne("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.Table", "Table")
+                        .WithMany("TableColumns")
+                        .HasForeignKey("TableId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Table");
+                });
+
+            modelBuilder.Entity("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.TableColumnChangeDetail", b =>
+                {
+                    b.HasOne("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.TableColumn", "TableColumn")
+                        .WithMany("TableColumnChangeDetails")
+                        .HasForeignKey("TableColumnId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("TableColumn");
+                });
+
             modelBuilder.Entity("Core.Security.Entities.RefreshToken", b =>
                 {
                     b.HasOne("Core.Security.Entities.User", "User")
@@ -274,6 +369,16 @@ namespace Persistence.Migrations
                         .IsRequired();
 
                     b.Navigation("ProgrammingLanguage");
+                });
+
+            modelBuilder.Entity("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.Table", b =>
+                {
+                    b.Navigation("TableColumns");
+                });
+
+            modelBuilder.Entity("Core.CrossCuttingConcerns.Logging.EntityChangeLogs.TableColumn", b =>
+                {
+                    b.Navigation("TableColumnChangeDetails");
                 });
 
             modelBuilder.Entity("Core.Security.Entities.OperationClaim", b =>

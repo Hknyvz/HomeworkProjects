@@ -1,4 +1,5 @@
-﻿using Core.Security.Entities;
+﻿using Core.Persistence.Context;
+using Core.Security.Entities;
 using Core.Security.EntityDbMappings;
 using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -7,7 +8,7 @@ using Persistence.EntityDbMappings;
 
 namespace Persistence.Contexts
 {
-    public class BaseDbContext : DbContext
+    public class ProgrammingLanguageDbContext : BaseDbContext
     {
         protected IConfiguration Configuration { get; set; }
         public DbSet<ProgrammingLanguage> ProgrammingLanguage { get; set; }
@@ -17,7 +18,7 @@ namespace Persistence.Contexts
         public DbSet<OperationClaim> OperationClaim { get; set; }
         public DbSet<RefreshToken> RefreshToken { get; set; }
 
-        public BaseDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
+        public ProgrammingLanguageDbContext(DbContextOptions dbContextOptions, IConfiguration configuration) : base(dbContextOptions)
         {
             Configuration = configuration;
         }
