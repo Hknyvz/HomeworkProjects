@@ -5,9 +5,9 @@ using Persistence.Contexts;
 
 namespace Persistence.Repositories;
 
-public class ProgrammingLanguageRepository : EfRepositoryBase<ProgrammingLanguage, BaseDbContext>, IProgrammingLanguageRepository
+public class ProgrammingLanguageRepository : EfRepositoryBase<ProgrammingLanguage, ProgrammingLanguageDbContext>, IProgrammingLanguageRepository
 {
-    public ProgrammingLanguageRepository(BaseDbContext context) : base(context)
+    public ProgrammingLanguageRepository(ProgrammingLanguageDbContext context) : base(context)
     {
     }
 }

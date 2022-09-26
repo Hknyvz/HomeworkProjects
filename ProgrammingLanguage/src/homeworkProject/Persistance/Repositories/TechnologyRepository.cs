@@ -5,9 +5,9 @@ using Persistence.Contexts;
 
 namespace Persistence.Repositories
 {
-    internal class TechnologyRepository : EfRepositoryBase<Technology, BaseDbContext>, ITechnologyRepository
+    internal class TechnologyRepository : EfRepositoryBase<Technology, ProgrammingLanguageDbContext>, ITechnologyRepository
     {
-        public TechnologyRepository(BaseDbContext context) : base(context)
+        public TechnologyRepository(ProgrammingLanguageDbContext context) : base(context)
         {
 
         }
