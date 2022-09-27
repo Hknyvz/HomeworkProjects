@@ -35,7 +35,7 @@ public class ProgrammingLanguageController : BaseController
     [HttpGet]
     public async Task<IActionResult> GetList([FromQuery] PageRequest pageRequest)
     {
-        GetListProgrammingLanguageQuery getListProgrammingLanguageQuery = new() { PageRequest = pageRequest };
+        GetListProgrammingLanguageQuery getListProgrammingLanguageQuery = new() { PageRequest=pageRequest };
         ProgrammingLanguageListModel result = await Mediator.Send(getListProgrammingLanguageQuery);
         return Ok(result);
     }

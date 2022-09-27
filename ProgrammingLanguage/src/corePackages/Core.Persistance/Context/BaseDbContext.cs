@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -90,9 +91,25 @@ namespace Core.Persistence.Context
       return logConfs;
     }
 
-    public void EntityChangeLogData()
+    public void AddTableName(BaseDbContext baseDbContext)
     {
-
+      Type dbContextType = baseDbContext.GetType();
+      PropertyInfo[] propertyInfos = dbContextType.GetProperties().Where(p => p?.GetMethod?.ReturnType.Name == typeof(DbSet<string>).Name && p?.DeclaringType?.Name != nameof(BaseDbContext)).ToArray();
+      foreach (PropertyInfo item in propertyInfos)
+      {
+        if (!Table.Any(p => p.TableName == item.Name))
+        {
+          Table.Add(
+            new Table { 
+              TableName = item.Name,
+              TableColumns=new TableColumn
+              {
+                TableColumnChangeDetails
+              }
+            }
+            );
+        }
+      }
     }
   }
 }

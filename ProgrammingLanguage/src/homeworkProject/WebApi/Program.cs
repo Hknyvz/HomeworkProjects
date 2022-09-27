@@ -1,7 +1,6 @@
 using Application;
 using Application.Services.Repositories;
 using Core.Persistence.Context;
-using Core.Persistence.Middlewares;
 using Persistence;
 using Persistence.Contexts;
 

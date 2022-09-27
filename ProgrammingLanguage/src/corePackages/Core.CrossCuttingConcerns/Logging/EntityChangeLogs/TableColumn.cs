@@ -9,7 +9,6 @@ public class TableColumn : IEntityChangeLog
         TableColumnChangeDetails = new HashSet<TableColumnChangeDetail>();
     }
     public int Id { get; set; }
-    public int EntityId { get; set; }
     public int TableId { get; set; }
     public string? ColumnName { get; set; }
     public virtual Table? Table { get; set; }
