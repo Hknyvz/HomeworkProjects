@@ -15,7 +15,7 @@ namespace Core.Persistence.Context
       var context = (BaseDbContext)services.BuildServiceProvider().GetService(type);
       if (context != null)
       {
-        context.AddEntityChangeLogData(context);
+        context.AddTableName(context);
         return services;
       }
       throw new InvalidOperationException($"'Cannot resolve scoped service {type.FullName} from root provider.'\r\n");

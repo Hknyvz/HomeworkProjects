@@ -100,14 +100,10 @@ namespace Core.Persistence.Context
         if (!Table.Any(p => p.TableName == item.Name))
         {
           Table.Add(
-            new Table { 
+            new Table
+            {
               TableName = item.Name,
-              TableColumns=new TableColumn
-              {
-                TableColumnChangeDetails
-              }
-            }
-            );
+            });
         }
       }
     }
