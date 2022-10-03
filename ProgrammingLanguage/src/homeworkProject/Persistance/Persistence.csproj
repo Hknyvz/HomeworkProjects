@@ -12,6 +12,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\..\..\Core.EntityChangeLog\Core.EntityChangeLog.csproj" />
 	  <ProjectReference Include="..\..\corePackages\Core.Security\Core.Security.csproj" />
 	  <ProjectReference Include="..\Application\Application.csproj" />
 	</ItemGroup>

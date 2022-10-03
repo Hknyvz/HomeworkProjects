@@ -18,9 +18,7 @@ namespace Core.Persistence.Context
       ChangeTracker.StateChanged += ChangeTracker_StateChanged;
     }
 
-    public DbSet<Table> Table { get; set; }
-    public DbSet<TableColumn> TableColumn { get; set; }
-    public DbSet<TableColumnChangeDetail> TableColumnChangeDetails { get; set; }
+
 
     private void ChangeTracker_StateChanged(object? sender, EntityStateChangedEventArgs e)
     {
@@ -91,21 +89,6 @@ namespace Core.Persistence.Context
       return logConfs;
     }
 
-    public void AddTableName(BaseDbContext baseDbContext)
-    {
-      Type dbContextType = baseDbContext.GetType();
-      PropertyInfo[] propertyInfos = dbContextType.GetProperties().Where(p => p?.GetMethod?.ReturnType.Name == typeof(DbSet<string>).Name && p?.DeclaringType?.Name != nameof(BaseDbContext)).ToArray();
-      foreach (PropertyInfo item in propertyInfos)
-      {
-        if (!Table.Any(p => p.TableName == item.Name))
-        {
-          Table.Add(
-            new Table
-            {
-              TableName = item.Name,
-            });
-        }
-      }
-    }
+    
   }
 }

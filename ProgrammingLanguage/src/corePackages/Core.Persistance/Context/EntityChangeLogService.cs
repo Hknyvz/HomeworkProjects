@@ -10,15 +10,15 @@ namespace Core.Persistence.Context
 {
   public static class EntityChangeLogService
   {
-    public static IServiceCollection AddEntityChangeLogService(this IServiceCollection services, Type type)
-    {
-      var context = (BaseDbContext)services.BuildServiceProvider().GetService(type);
-      if (context != null)
-      {
-        context.AddTableName(context);
-        return services;
-      }
-      throw new InvalidOperationException($"'Cannot resolve scoped service {type.FullName} from root provider.'\r\n");
-    }
+    //public static IServiceCollection AddEntityChangeLogService(this IServiceCollection services, Type type)
+    //{
+    //  var context = (BaseDbContext)services.BuildServiceProvider().GetService(type);
+    //  if (context != null)
+    //  {
+    //    context.AddTableName(context);
+    //    return services;
+    //  }
+    //  throw new InvalidOperationException($"'Cannot resolve scoped service {type.FullName} from root provider.'\r\n");
+    //}
   }
 }
