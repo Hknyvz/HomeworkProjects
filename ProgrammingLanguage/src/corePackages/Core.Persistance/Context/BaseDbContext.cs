@@ -39,8 +39,8 @@ namespace Core.Persistence.Context
     private IEnumerable<LogObjectDto> CollectChangesAndSaveChanges(Dictionary<string, HashSet<string>> logConfs, ChangeTracker changeTracker, EntityStateChangedEventArgs e)
     {
       var timestamp = DateTime.UtcNow;
-      string userId;
-      string userName;
+      //string userId;
+      //string userName;
       //try
       //{
       //    //userId = httpContextAccessor.HttpContext.User.FindFirst(ClaimTypes.NameIdentifier).Value;

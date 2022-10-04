@@ -1,15 +1,11 @@
 ﻿using Core.EntityChangeLog.Dtos;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 
 namespace Core.EntityChangeLog.Services
 {
   public interface IEntityChangeLogService
   {
-    Task AddTableAndColumn(Type dbContextType);
-    Task AddChange(EntityChangeLogDto entityChangeLogDto);  
+    Task AddChange(EntityChangeLogDto entityChangeLogDto);
+    Task AddTableAndColumn<TDbContext>() where TDbContext : DbContext;
   }
 }
