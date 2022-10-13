@@ -14,8 +14,8 @@ namespace Core.EntityChangeLog
     {
     }
 
-    public DbSet<Table> Table { get; set; }
-    public DbSet<TableColumn> TableColumn { get; set; }
-    public DbSet<TableColumnChangeDetail> TableColumnChangeDetails { get; set; }
+    public DbSet<Table>? Table { get; set; }
+    public DbSet<TableColumn>? TableColumn { get; set; }
+    public DbSet<TableColumnChangeDetail>? TableColumnChangeDetails { get; set; }
   }
 }

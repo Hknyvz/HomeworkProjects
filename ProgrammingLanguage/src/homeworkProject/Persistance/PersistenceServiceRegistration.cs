@@ -13,7 +13,8 @@ public static class PersistenceServiceRegistration
   public static IServiceCollection AddPersistenceServices(this IServiceCollection services, IConfiguration configuration)
   {
     services.AddDbContext<ProgrammingLanguageDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ProgrammingLanguage")));
-    services.AddEntityChangeLogService(typeof(ProgrammingLanguageDbContext));
+    services.AddDbContext<EntityChangeDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("EntityChangeLog")));
+    services.AddEntityChangeLogService<ProgrammingLanguageDbContext>();
     services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
     services.AddScoped<ITechnologyRepository, TechnologyRepository>();
     return services;

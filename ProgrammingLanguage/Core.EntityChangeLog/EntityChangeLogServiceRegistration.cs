@@ -11,14 +11,12 @@ namespace Core.EntityChangeLog
 {
   public static class EntityChangeLogServiceRegistration
   {
-    public static IServiceCollection AddEntityChangeLogService(this IServiceCollection services, Type dbContextType)
+    public static IServiceCollection AddEntityChangeLogService<TDbContext>(this IServiceCollection services) where TDbContext : DbContext
     {
       services.AddScoped<IEntityChangeLogRepository, EntityChangeLogRepository>();
       services.AddScoped<IEntityChangeLogService, EntityChangeLogService>();
-      var entityChangeLogRepository = (EntityChangeLogRepository)services.BuildServiceProvider().GetService(typeof(EntityChangeLogRepository));
-      
-
-      
+      var entityChangeLogService = (EntityChangeLogService)services.BuildServiceProvider().GetService(typeof(EntityChangeLogService));
+      entityChangeLogService.AddTableAndColumn<TDbContext>().GetAwaiter();
       return services;
     }
   }

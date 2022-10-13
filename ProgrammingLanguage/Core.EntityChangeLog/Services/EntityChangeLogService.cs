@@ -1,26 +1,27 @@
-﻿using Core.EntityChangeLog.Domain;
+﻿using AutoMapper;
+using Core.EntityChangeLog.Domain;
 using Core.EntityChangeLog.Dtos;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Core.EntityChangeLog.Services
 {
   public class EntityChangeLogService : IEntityChangeLogService
   {
-    public EntityChangeLogService(IEntityChangeLogRepository entityChangeLogRepository)
+    public EntityChangeLogService(IEntityChangeLogRepository entityChangeLogRepository, IMapper mapper)
     {
       this.entityChangeLogRepository = entityChangeLogRepository;
+      this.mapper = mapper;
     }
-
+    private IMapper mapper { get; }
     private IEntityChangeLogRepository entityChangeLogRepository { get; }
 
     public async Task AddChange(EntityChangeLogDto entityChangeLogDto)
     {
+      TableColumnChangeDetail tableColumnChangeDetail = mapper.Map<TableColumnChangeDetail>(entityChangeLogDto);
+      int tableId = await entityChangeLogRepository.GetTableIdAsync(entityChangeLogDto.TableName);
+      tableColumnChangeDetail.TableColumnId = await entityChangeLogRepository.GetColumnIdAsync(tableId, entityChangeLogDto.ColumnName);
+      await entityChangeLogRepository.AddChangeAsync(tableColumnChangeDetail);
     }
 
     public async Task AddTableAndColumn<TDbContext>() where TDbContext : DbContext
@@ -30,14 +31,17 @@ namespace Core.EntityChangeLog.Services
       foreach (PropertyInfo table in tables)
       {
         string tableName = table.Name;
-        PropertyInfo[] properties = table.PropertyType.GenericTypeArguments[0].GetProperties().Where(p => !p.GetGetMethod().IsVirtual).ToArray();
-        foreach (PropertyInfo property in properties)
+        foreach (PropertyInfo property in table.PropertyType.GenericTypeArguments[0].GetProperties())
         {
-          await entityChangeLogRepository.AddTableAsync(
-            new Table
-            {
-              TableName = tableName,
-            });
+          MethodInfo? methodInfo = property.GetGetMethod();
+          if (methodInfo != null && !methodInfo.IsVirtual)
+          {
+            await entityChangeLogRepository.AddTableAsync(
+              new Table
+              {
+                TableName = tableName,
+              });
+          }
         }
       }
     }
