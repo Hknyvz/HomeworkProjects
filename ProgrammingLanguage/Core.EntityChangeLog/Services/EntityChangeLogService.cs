@@ -30,17 +30,21 @@ namespace Core.EntityChangeLog.Services
       PropertyInfo[] tables = type.GetProperties().Where(p => p?.GetMethod?.ReturnType.Name == typeof(DbSet<string>).Name).ToArray();
       foreach (PropertyInfo table in tables)
       {
-        string tableName = table.Name;
+        int tableId = await entityChangeLogRepository.AddTableAsync(
+              new Table
+              {
+                TableName = table.Name
+              });
         foreach (PropertyInfo property in table.PropertyType.GenericTypeArguments[0].GetProperties())
         {
           MethodInfo? methodInfo = property.GetGetMethod();
           if (methodInfo != null && !methodInfo.IsVirtual)
           {
-            await entityChangeLogRepository.AddTableAsync(
-              new Table
-              {
-                TableName = tableName,
-              });
+            await entityChangeLogRepository.AddColumnAsync(new TableColumn
+            {
+              TableId = tableId,
+              ColumnName = property.Name
+            });
           }
         }
       }

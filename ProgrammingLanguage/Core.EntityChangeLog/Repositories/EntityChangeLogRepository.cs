@@ -24,21 +24,28 @@ namespace Core.EntityChangeLog.Services
       await context.SaveChangesAsync();
     }
 
-    public async Task AddColumnAsync(TableColumn tableColumn)
+    public async Task<int> AddColumnAsync(TableColumn tableColumn)
     {
-      if (!context.TableColumn.Any(p => p.ColumnName == tableColumn.ColumnName && p.TableId == tableColumn.TableId))
+      if (context.TableColumn != null && !context.TableColumn.Any(p => p.ColumnName == tableColumn.ColumnName && p.TableId == tableColumn.TableId))
       {
         await context.TableColumn.AddAsync(tableColumn);
         await context.SaveChangesAsync();
       }
+      return tableColumn.Id;
     }
 
-    public async Task AddTableAsync(Table table)
+    public async Task<int> AddTableAsync(Table table)
     {
-      if (!context.Table.Any(p => p.TableName == table.TableName))
+      Table foundedTable = context.Table.SingleOrDefault(p => p.TableName == table.TableName);
+      if (foundedTable == null)
       {
         await context.Table.AddAsync(table);
         await context.SaveChangesAsync();
+        return table.Id;
+      }
+      else
+      {
+        return foundedTable.Id;
       }
     }
 

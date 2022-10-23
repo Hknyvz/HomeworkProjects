@@ -14,6 +14,7 @@ public static class PersistenceServiceRegistration
   {
     services.AddDbContext<ProgrammingLanguageDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("ProgrammingLanguage")));
     services.AddDbContext<EntityChangeDbContext>(options => options.UseSqlServer(configuration.GetConnectionString("EntityChangeLog")));
+    services.AddScoped<EntityChangeLogDbContext, EntityChangeDbContext>();
     services.AddEntityChangeLogService<ProgrammingLanguageDbContext>();
     services.AddScoped<IProgrammingLanguageRepository, ProgrammingLanguageRepository>();
     services.AddScoped<ITechnologyRepository, TechnologyRepository>();

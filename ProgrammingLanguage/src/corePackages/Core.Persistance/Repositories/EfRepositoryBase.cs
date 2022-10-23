@@ -67,6 +67,7 @@ public class EfRepositoryBase<TEntity, TContext> : IAsyncRepository<TEntity>, IR
 
     public async Task<TEntity> UpdateAsync(TEntity entity)
     {
+        TEntity? oldEntity = await GetAsync(p => p.Id == entity.Id);
         Context.Entry(entity).State = EntityState.Modified;
         await Context.SaveChangesAsync();
         return entity;

@@ -15,7 +15,7 @@ namespace Core.EntityChangeLog
     {
       services.AddScoped<IEntityChangeLogRepository, EntityChangeLogRepository>();
       services.AddScoped<IEntityChangeLogService, EntityChangeLogService>();
-      var entityChangeLogService = (EntityChangeLogService)services.BuildServiceProvider().GetService(typeof(EntityChangeLogService));
+      var entityChangeLogService = (EntityChangeLogService)services.BuildServiceProvider().GetService(typeof(IEntityChangeLogService));
       entityChangeLogService.AddTableAndColumn<TDbContext>().GetAwaiter();
       return services;
     }
